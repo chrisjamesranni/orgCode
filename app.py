@@ -68,64 +68,17 @@ def signup():
 def home():
     return render_template('home.html')
 
-@app.route('/plots.html')
-def plots():
-    return render_template('plots.html')
+@app.route('/accuracy.html')
+def accuracy():
+    return render_template('accuracy.html')
 
-@app.route('/heatmaps.html')
-def heatmaps():
-    return render_template('heatmaps.html')
+@app.route('/community.html')
+def community():
+    return render_template('community.html')
 
-@app.route('/chart.html')
-def chart():
-    return render_template('chart.html')
-
-@app.route('/satellite.html')
-def satellite():
-    direc = "satellite_images/Delhi_July.png"
-    with open(direc, "rb") as image_file:
-        image = base64.b64encode(image_file.read())
-    image = image.decode('utf-8')
-    return render_template('satellite.html', data=data, image_file=image, months=months, text="Delhi in January 2024")
-
-@app.route('/satellite.html', methods=['GET', 'POST'])
-def satelliteimages():
-    place = request.form.get('place')
-    date = request.form.get('date')
-    data = [{'name':'Delhi', "sel": ""}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
-    months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": ""}, {"name": current_month, "sel": "selected"}]
-    for item in data:
-        if item["name"] == place:
-            item["sel"] = "selected"
-    
-    for item in months:
-        if item["name"] == date:
-            item["sel"] = "selected"
-
-    text = place + " in " + date + " 2024"
-
-    direc = "satellite_images/{}_{}.png".format(place, date)
-    with open(direc, "rb") as image_file:
-        image = base64.b64encode(image_file.read())
-    image = image.decode('utf-8')
-    return render_template('satellite.html', data=data, image_file=image, months=months, text=text)
-
-@app.route('/current_status.html')
-def current_status():
-    # Logic to fetch and display current satellite images for multiple locations
-    images = {}
-    for city in data:
-        city_name = city['name']
-        # Assuming images are stored in a specific format
-        direc = f"satellite_images/{city_name}_current.png"
-        try:
-            with open(direc, "rb") as image_file:
-                image = base64.b64encode(image_file.read())
-                images[city_name] = image.decode('utf-8')
-        except FileNotFoundError:
-            images[city_name] = None  # Handle missing images
-
-    return render_template('current_status.html', images=images)
+@app.route('/awareness.html')
+def awareness():
+    return render_template('awareness.html')
 
 @app.route('/predicts.html')
 def predicts():

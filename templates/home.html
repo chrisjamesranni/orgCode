@@ -72,10 +72,6 @@
 
       <div class="container">
         <div class="logo float-left">
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <h1 class="text-light">
-            <a href="#intro" class="scrollto"><span>FloodGuard</span></a>
-          </h1> -->
           <a href="#header" class="scrollto"
             ><img
               style="margin-top: -5px; min-height: 50px;"
@@ -85,12 +81,14 @@
           /></a>
         </div>
 
-        <nav class="main-nav float-right d-none d-lg-block">
+        <nav class="main-nav float-right d-none d-lg-block" style="background-color: white;">
           <ul>
             <li class="active"><a href="home.html">Home</a></li>
-            <li><a href="Community chat.html">Community Chat</a></li>
+            <li><a href="community.html">Community Chat</a></li>
             <li><a href="predicts.html">Predict</a></li>
-            <li><a href="Awareness Section">Awareness</a></li>
+            <li><a href="awareness.html">Awareness</a></li>
+            <li><a href="accuracy.html">Accuracy</a></li>
+            <li><a href="user_profile.html"><i class="fa fa-user" style="font-size: 1.5em;"></i></a></li>
           </ul>
         </nav>
         <!-- .main-nav -->
@@ -105,7 +103,6 @@
       <div class="container d-flex h-100">
         <div class="row justify-content-center align-self-center">
           <div class="col-md-5 intro-info order-md-first order-last" style="background-color: transparent;padding-right:50px;">
-            <!-- <h2 style="color:#00BFFF;">GeoGuard</h2> -->
             <a href="#header" class="scrollto"
             ><img
               style="margin-top: 0px; max-height: 150px;"
@@ -121,11 +118,6 @@
           </div>
 
           <div class="col-md-7 intro-img order-md-last order-first" style="background-color: transparent;">
-            <!-- <img
-              src="{{ url_for('static', filename='img/er.png') }}"
-              alt=""
-              class="img-fluid"
-            /> -->
             <img src="{{ url_for('static', filename='img/2.jpg') }}" width="750" height="500" alt="Flood Detection Machine Learning Project">
           </div>
         </div>
@@ -217,7 +209,7 @@
                   style="color: #41cf2e;"
                 ></i>
               </div>
-              <h4 class="title"><a href="community chat">chatroom</a></h4>
+              <h4 class="title"><a href="community.html">chatroom</a></h4>
               <p class="description">
                 We analyzed data from NASA's GPM Project, and displayed georeferenced plots for sevaral cities.
               </p>
@@ -239,5 +231,28 @@
               </p>
             </div>
           </div>
+
+          <div
+            class="col-md-6 col-lg-3 wow bounceInUp"
+            data-wow-delay="0.1s"
+            data-wow-duration="1.4s"
+          >
+            <div class="box" style="height: 320px;">
+              <div class="icon" style="background: #eafde7;">
+                <i
+                  class="ion-ios-speedometer-outline"
+                  style="color: #41cf2e;"
+                ></i>
+              </div>
+              <h4 class="title"><a href="accuracy.html">Accuracy</a></h4>
+              <p class="description">
+                We analyzed data from NASA's GPM Project, and displayed georeferenced plots for sevaral cities.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+  </main>
+</body>
+</html>
