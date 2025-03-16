@@ -147,6 +147,7 @@ h6 {
 --------------------------------------------------------------*/
 
 #header {
+  background-color: #fff;
   height: 110px;
   transition: all 0.5s;
   z-index: 997;
@@ -158,6 +159,7 @@ h6 {
   right: 0;
   transition: all 0.5s;
   z-index: 997;
+ 
 }
 
 #header.header-scrolled,
