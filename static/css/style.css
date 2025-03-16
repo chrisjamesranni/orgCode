@@ -354,6 +354,51 @@ h6 {
   right: 15px;
 }
 
+/* profile icon  only added for PC */
+
+profile-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #2490d8;
+  color: white;
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+.menu.show {
+  right: 0;
+}
+.menu .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.overlay.show {
+  display: block;
+}
+
 /* Mobile Navigation */
 
 .mobile-nav {

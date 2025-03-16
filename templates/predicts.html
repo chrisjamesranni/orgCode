@@ -116,8 +116,24 @@
             <li><a href="predicts.html">Predict</a></li>
             <li><a href="awareness.html">Awareness</a></li>
             <li><a href="accuracy.html">Accuracy</a></li>
-            <li style="position: absolute; right: 20px;"><a href="user_profile.html"><i class="fa fa-user" style="font-size: 1.5em;"></i></a></li>
-
+            <div style="position: absolute; right: 20px;" class="profile-icon" onclick="toggleMenu()"><i class="fa fa-user" style="font-size: 1.5em;"></i></div>
+            <div class="overlay" onclick="toggleMenu()"></div>
+            <div class="menu">
+              <span class="close-btn" onclick="toggleMenu()">&times;</span>
+              <ul>
+                <li>View profile</li> <!-- Name, Location, Email,   -->
+                <li>Settings</li> <!--Change Password, Notification, Change Password, Privacy Settings-->
+                <li>History</li> <!-- -->
+                <li>Help & Support</li> <!--hi -->
+                <li>Logout</li> <!--hi-->
+              </ul>
+            </div>
+            <script>
+              function toggleMenu() {
+                  document.querySelector('.menu').classList.toggle('show');
+                  document.querySelector('.overlay').classList.toggle('show');
+              }
+            </script>
           </ul>
         </nav>
         <!-- .main-nav -->
