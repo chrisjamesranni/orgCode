@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GeoGuard Login</title>
-  <link rel="stylesheet" href="style1.css">
+  <link
+      href="{{ url_for('static', filename='css/style2.css') }}"
+      rel="stylesheet"
+    />
 </head>
 <body>
   <div class="rain-animation"></div>
@@ -12,7 +15,7 @@
     <div class="form-container">
       <h1>GeoGuard</h1>
       <p>Flood & Landslide Prediction System</p>
-      <form id="loginForm" action="/loginpage.html" method="POST">
+      <form id="loginForm" method="POST" onsubmit="event.preventDefault(); window.location.href='home.html';">
         <div class="input-group">
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="Enter your email" required>
@@ -21,7 +24,7 @@
           <label for="password">Password</label>
           <input type="password" id="password" placeholder="Enter your password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="button" onclick="window.location.href='home.html';">Login</button>
       </form>
       <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>

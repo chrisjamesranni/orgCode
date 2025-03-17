@@ -1,17 +1,16 @@
+#Running on http://127.0.0.1:5000
+
 """Web app."""
 import flask
 from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 import pickle
-import base64
 from training import prediction
 import requests
 from datetime import datetime
 import logging
 
 # Configure logging
-logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 app = flask.Flask(__name__)
 
 # MongoDB Configuration
@@ -43,7 +42,7 @@ def login():
         user = mongo.db.users.find_one({"email": email, "password": password})
         if user:
             logging.info(f"User logged in with email: {email}")
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
         else:
             return "Invalid credentials", 401  # Return an error for invalid credentials
 
@@ -60,8 +59,7 @@ def signup():
         # Store user data in MongoDB
         mongo.db.users.insert_one({"full_name": full_name, "email": email, "password": password})
         logging.info(f"New user signed up: {full_name} with email: {email}")
-        return redirect(url_for('home'))
-
+        return redirect(url_for('signup'))
     return render_template('signup.html')
 
 @app.route('/home.html')
