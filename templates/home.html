@@ -85,12 +85,15 @@
           <ul>
             <li class="active"><a href="home.html">Home</a></li>
             <li><a href="community.html">Community Chat</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup.html">Sign Up</a></li>
             <li><a href="predicts.html">Predict</a></li>
-            <li><a href="awareness.html">Awareness</a></li>
+            <li><a href="disaster_awareness.html">Awareness</a></li>
             <li><a href="accuracy.html">Accuracy</a></li>
-            
+            <li>
+              <a href="#" id="userStatus" onclick="handleUserStatus()">
+                <i class="fa" id="userIcon"></i> Login
+              </a>
+            </li>
+
             <div style="position: absolute; right: 20px;" class="profile-icon" onclick="toggleMenu()"><i class="fa fa-user" style="font-size: 1.5em;"></i></div>
             <div class="overlay" onclick="toggleMenu()"></div>
             <div class="menu">
@@ -104,6 +107,22 @@
               </ul>
             </div>
             <script>
+              function handleUserStatus() {
+                // Logic to check if user is logged in
+                const isLoggedIn = false; // Replace with actual login check
+                const userStatusLink = document.getElementById('userStatus');
+                const userIcon = document.getElementById('userIcon');
+                
+                if (isLoggedIn) {
+                  userIcon.className = 'fa fa-user'; // Profile icon
+                  userStatusLink.innerText = 'Profile';
+                  userStatusLink.href = 'profile.html'; // Link to profile page
+                } else {
+                  userIcon.className = 'fa fa-sign-in'; // Login icon
+                  userStatusLink.innerText = 'Login';
+                  userStatusLink.href = 'loginpage.html'; // Link to login page
+                }
+              }
               function toggleMenu() {
                   document.querySelector('.menu').classList.toggle('show');
                   document.querySelector('.overlay').classList.toggle('show');
@@ -207,7 +226,7 @@
                   style="color: #ff689b;"
                 ></i>
               </div>
-              <h4 class="title"><a href="awareness.html">Awareness</a></h4>
+              <h4 class="title"><a href="Awareness_index.html">Awareness</a></h4>
               <p class="description">
                 On our website, you can view plots showing flood prediction,
                 precipitation analysis, and damage analysis.
