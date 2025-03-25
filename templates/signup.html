@@ -1,0 +1,185 @@
+{% extends "layout1.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Join GeoGuard's network for flood and landslide prediction</p>
+        </div>
+        
+        <form method="POST" action="" class="auth-form" id="signup-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    {{ form.username(class="form-control", placeholder="Username") }}
+                </div>
+                {% if form.username.errors %}
+                    <div class="error-message">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                    {{ form.email(class="form-control", placeholder="Email Address") }}
+                </div>
+                {% if form.email.errors %}
+                    <div class="error-message">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                <div class="input-icon">
+                    <i class="fas fa-lock"></i>
+                    {{ form.password(class="form-control", placeholder="Password") }}
+                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                {% if form.password.errors %}
+                    <div class="error-message">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="password-strength">
+                    <div class="strength-meter">
+                        <div class="meter-bar"></div>
+                    </div>
+                    <span class="strength-text">Password strength</span>
+                </div>
+            </div>
+            
+            <div class="form-group {% if form.confirm_password.errors %}has-error{% endif %}">
+                <div class="input-icon">
+                    <i class="fas fa-lock"></i>
+                    {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+                </div>
+                {% if form.confirm_password.errors %}
+                    <div class="error-message">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-block") }}
+            </div>
+        </form>
+        
+        <div class="auth-footer">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+        </div>
+    </div>
+    
+    <div class="auth-info">
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Predictive Analytics</h3>
+            <p>Advanced AI models to forecast potential natural hazards</p>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobile Alerts</h3>
+            <p>Stay informed with push notifications and SMS alerts</p>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3>Community Network</h3>
+            <p>Connect with local agencies and community response teams</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle password visibility
+        const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+        togglePasswordButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const passwordInput = this.parentElement.querySelector('input');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+        
+        // Password strength meter
+        const passwordInput = document.querySelector('#password');
+        const meterBar = document.querySelector('.meter-bar');
+        const strengthText = document.querySelector('.strength-text');
+        
+        passwordInput.addEventListener('input', function() {
+            const val = passwordInput.value;
+            let strength = 0;
+            
+            // Check length
+            if (val.length >= 8) strength += 25;
+            
+            // Check for lowercase letters
+            if (/[a-z]/.test(val)) strength += 25;
+            
+            // Check for uppercase letters
+            if (/[A-Z]/.test(val)) strength += 25;
+            
+            // Check for numbers
+            if (/\d/.test(val)) strength += 25;
+            
+            // Update meter
+            meterBar.style.width = strength + '%';
+            
+            // Update color and text based on strength
+            if (strength < 25) {
+                meterBar.style.backgroundColor = '#ff4d4d';
+                strengthText.textContent = 'Very weak';
+            } else if (strength < 50) {
+                meterBar.style.backgroundColor = '#ffa64d';
+                strengthText.textContent = 'Weak';
+            } else if (strength < 75) {
+                meterBar.style.backgroundColor = '#ffff4d';
+                strengthText.textContent = 'Medium';
+            } else if (strength < 100) {
+                meterBar.style.backgroundColor = '#4dff4d';
+                strengthText.textContent = 'Strong';
+            } else {
+                meterBar.style.backgroundColor = '#4d4dff';
+                strengthText.textContent = 'Very strong';
+            }
+        });
+    });
+</script>
+{% endblock %}

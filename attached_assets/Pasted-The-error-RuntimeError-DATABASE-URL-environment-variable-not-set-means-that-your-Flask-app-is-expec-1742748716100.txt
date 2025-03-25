@@ -1,0 +1,78 @@
+The error RuntimeError: DATABASE_URL environment variable not set means that your Flask app is expecting the DATABASE_URL environment variable to be set but it is not. This variable typically contains the URL for your database (e.g., PostgreSQL, MySQL, SQLite).
+
+To fix this, you need to make sure that the DATABASE_URL environment variable is correctly set in your environment. Here's how you can resolve it:
+
+### 1. Set DATABASE_URL Environment Variable
+
+There are several ways you can set the environment variable depending on your operating system and how you are running the app:
+
+#### Option 1: Set DATABASE_URL in your terminal (Temporary for current session)
+
+If you're running the app from the command line, you can set the environment variable directly in your terminal before starting the app:
+
+- *On Windows (CMD or PowerShell):*
+  bash
+  set DATABASE_URL="your-database-url-here"
+  
+
+- *On Linux/macOS (Bash):*
+  bash
+  export DATABASE_URL="your-database-url-here"
+  
+
+Replace "your-database-url-here" with the actual database URL (e.g., postgresql://user:password@localhost/dbname).
+
+#### Option 2: Set DATABASE_URL in a .env file (for development)
+
+You can also create a .env file in the root of your project to define environment variables. Make sure you have the python-dotenv package installed to load environment variables from the .env file.
+
+1. Install python-dotenv (if not installed):
+   bash
+   pip install python-dotenv
+   
+
+2. Create a .env file in the root of your project (next to app.py) and add the following line:
+   bash
+   DATABASE_URL=your-database-url-here
+   
+
+3. Make sure to import and load the environment variables at the top of your app.py:
+   python
+   from dotenv import load_dotenv
+   load_dotenv()  # This will load the variables from the .env file
+   
+
+#### Option 3: Set DATABASE_URL in your IDE (Permanent for development)
+
+If you are using an Integrated Development Environment (IDE) like PyCharm or VS Code, you can set the DATABASE_URL environment variable in your IDE settings.
+
+- *In PyCharm:*
+  1. Go to Run > Edit Configurations.
+  2. Select your project configuration.
+  3. In the Environment variables section, click on the + and add DATABASE_URL with your database URL value.
+
+- *In VS Code (launch.json):*
+  Add the following to your launch.json under configurations:
+  json
+  "env": {
+    "DATABASE_URL": "your-database-url-here"
+  }
+  
+
+### 2. Ensure Correct Database URL Format
+
+Make sure the DATABASE_URL is in the correct format for the database you're using:
+
+- *PostgreSQL:* postgresql://username:password@host:port/database
+- *MySQL:* mysql://username:password@host:port/database
+- *SQLite:* sqlite:///path/to/database.db
+
+### 3. Verify Database Connectivity
+
+If you are using a remote database (like PostgreSQL or MySQL), make sure that your database server is running and that the credentials and host information in the DATABASE_URL are correct.
+
+---
+
+Once you've set the DATABASE_URL environment variable, the error should be resolved, and your Flask application should be able to connect to the database.
+
+Let me know if you need further help!

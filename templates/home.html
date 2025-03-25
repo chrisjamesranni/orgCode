@@ -81,53 +81,14 @@
           /></a>
         </div>
 
+   
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
-            <li class="active"><a href="home.html">Home</a></li>
-            <li><a href="community.html">GeoGuard Chatbot</a></li>
-            <li><a href="predicts.html">Predict</a></li>
-            <li><a href="disaster_awareness.html">Awareness</a></li>
-            <li><a href="accuracy.html">Accuracy</a></li>
-            <li>
-              <a href="#" id="userStatus" onclick="handleUserStatus()">
-                <i class="fa" id="userIcon"></i> Login
-              </a>
-            </li>
-
-            <div style="position: absolute; right: 20px;" class="profile-icon" onclick="toggleMenu()"><i class="fa fa-user" style="font-size: 1.5em;"></i></div>
-            <div class="overlay" onclick="toggleMenu()"></div>
-            <div class="menu">
-              <span class="close-btn" onclick="toggleMenu()">&times;</span>
-              <ul>
-                <li>View profile</li> <!-- Name, Location, Email,   -->
-                <li>Settings</li> <!--Change Password, Notification, Change Password, Privacy Settings-->
-                <li>History</li> <!-- -->
-                <li>Help & Support</li> <!--hi -->
-                <li>Logout</li> <!--hi-->
-              </ul>
-            </div>
-            <script>
-              function handleUserStatus() {
-                // Logic to check if user is logged in
-                const isLoggedIn = false; // Replace with actual login check
-                const userStatusLink = document.getElementById('userStatus');
-                const userIcon = document.getElementById('userIcon');
-                
-                if (isLoggedIn) {
-                  userIcon.className = 'fa fa-user'; // Profile icon
-                  userStatusLink.innerText = 'Profile';
-                  userStatusLink.href = 'profile.html'; // Link to profile page
-                } else {
-                  userIcon.className = 'fa fa-sign-in'; // Login icon
-                  userStatusLink.innerText = 'Login';
-                  userStatusLink.href = 'loginpage.html'; // Link to login page
-                }
-              }
-              function toggleMenu() {
-                  document.querySelector('.menu').classList.toggle('show');
-                  document.querySelector('.overlay').classList.toggle('show');
-              }
-            </script>
+            <li class="active"><a href="home.html"><i class="fa fa-home"></i> Home</a></li>
+            <li><a class="nav-link"  href="chatbot.html"><i class="fa fa-comments"></i> Chatbot</a></li>
+            <li><a class="nav-link"  href="predicts.html"><i class="fa fa-eye"></i> Predict</a></li>
+            <li><a class="nav-link"  href="disaster_awareness.html"><i class="fa fa-exclamation-triangle"></i> Awareness</a></li>
+            <li><a class="nav-link"  href="accuracy.html"><i class="fa fa-bullseye"></i> Accuracy</a></li>
           </ul>
         </nav>
         <!-- .main-nav -->
@@ -226,16 +187,14 @@
                   style="color: #ff689b;"
                 ></i>
               </div>
-              <h4 class="title"><a href="Awareness_index.html">Awareness</a></h4>
+              <h4 class="title"><a href="disaster_awareness.html">Awareness</a></h4>
               <p class="description">
-                On our website, you can view plots showing flood prediction,
-                precipitation analysis, and damage analysis.
+                On our website, shares safety tips, emergency contacts, and flood and landslide information
               </p>
             </div>
             
           </div>
           
-
           <div
             class="col-md-6 col-lg-3 wow bounceInUp"
             data-wow-delay="0.1s"
@@ -248,11 +207,30 @@
                   style="color: #41cf2e;"
                 ></i>
               </div>
-              <h4 class="title"><a href="community.html">chatroom</a></h4>
+              <h4 class="title"><a href="chatbot.html">GeoGuard chatbot</a></h4>
               <p class="description">
-                We analyzed data from NASA's GPM Project, and displayed georeferenced plots for sevaral cities.
+                Chat with our bot for safety tips, emergency contacts, and info on floods and landslides.
               </p>
             </div>
+          </div>
+
+          <div
+          class="col-md-6 col-lg-3 wow bounceInUp"
+          data-wow-delay="0.1s"
+          data-wow-duration="1.4s"
+        >
+          <div class="box" style="height: 320px;">
+            <div class="icon" style="background: #eafde7;">
+              <i
+                class="ion-ios-speedometer-outline"
+                style="color: #41cf2e;"
+              ></i>
+            </div>
+            <h4 class="title"><a href="accuracy.html">Accuracy</a></h4>
+            <p class="description">
+              Accuracy page shows the prediction score, training features, and project architecture.
+            </p>
+          </div>
           </div>
 
           <div
@@ -271,24 +249,6 @@
             </div>
           </div>
 
-          <div
-            class="col-md-6 col-lg-3 wow bounceInUp"
-            data-wow-delay="0.1s"
-            data-wow-duration="1.4s"
-          >
-            <div class="box" style="height: 320px;">
-              <div class="icon" style="background: #eafde7;">
-                <i
-                  class="ion-ios-speedometer-outline"
-                  style="color: #41cf2e;"
-                ></i>
-              </div>
-              <h4 class="title"><a href="accuracy.html">Accuracy</a></h4>
-              <p class="description">
-                We analyzed data from NASA's GPM Project, and displayed georeferenced plots for sevaral cities.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

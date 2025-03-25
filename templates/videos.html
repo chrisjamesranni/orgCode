@@ -3,14 +3,56 @@
 {% block title %} - Educational Videos{% endblock %}
 
 {% block content %}
+
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-shield-alt me-2 text-primary"></i>Disaster Awareness
+            </a>
+            <button class="navbar-toggler" type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex flex-column align-items-end ms-auto">
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item"><a class="nav-link text-purple" href="{{ url_for('home') }}"><i class="fas fa-home"></i> HOME</a></li>
+                    <li class="nav-item"><a class="nav-link text-purple" href="chatbot.html"><i class="fa fa-comments"></i> CHATBOT</a></li>
+                    <li class="nav-item"><a class="nav-link text-purple" href="predicts.html"><i class="fa fa-eye"></i> PREDICT</a></li>
+                    <li class="nav-item"><a class="nav-link text-purple" href="disaster_awareness.html"><i class="fa fa-exclamation-triangle"></i> AWARENESS</a></li>
+                    <li class="nav-item"><a class="nav-link text-purple" href="accuracy.html"><i class="fa fa-bullseye"></i> ACCURACY</a></li>
+                </ul>
+                <ul class="navbar-nav flox-row mt-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('quiz') }}">
+                            <i class="fas fa-question-circle me-1 text-primary"></i> Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('game') }}">
+                            <i class="fas fa-gamepad me-1 text-success"></i> Game
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('videos') }}">
+                            <i class="fas fa-video me-1 text-info"></i> Videos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('emergency') }}">
+                            <i class="fas fa-phone-alt me-1 text-danger"></i> Emergency
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <h1 class="mb-4 text-center">Educational Videos</h1>
     <p class="lead text-center mb-5">
         Watch these informative videos to learn about disaster preparedness, response strategies, 
         and safety measures for various natural disasters.
     </p>
 
-    <!-- Video categories navigation -->
+    <!-- Video categories navigation -->'
     <ul class="nav nav-pills mb-4 justify-content-center" id="videoCategoriesTabs" role="tablist">
         {% for category in categories %}
         <li class="nav-item" role="presentation">

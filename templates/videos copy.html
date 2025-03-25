@@ -1,0 +1,273 @@
+{% extends 'layout.html' %}
+
+{% block title %} - Educational Videos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-shield-alt me-2 text-primary"></i>Disaster Awareness
+            </a>
+            <button class="navbar-toggler" type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <i class="fas fa-home me-1 text-secondary"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('quiz') }}">
+                            <i class="fas fa-question-circle me-1 text-primary"></i> Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('game') }}">
+                            <i class="fas fa-gamepad me-1 text-success"></i> Game
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('videos') }}">
+                            <i class="fas fa-video me-1 text-info"></i> Videos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('emergency') }}">
+                            <i class="fas fa-phone-alt me-1 text-danger"></i> Emergency
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="mb-4 text-center">Disaster Awareness Videos</h1>
+    <p class="lead text-center mb-5">
+        Watch these informative videos to learn about disaster preparedness, response strategies, 
+        and safety measures for various natural disasters including floods, landslides, earthquakes, and tsunamis.
+    </p>
+
+    <!-- Video content -->
+    <div class="row g-4 mb-5">
+        {% for category in categories %}
+            {% for video in videos[category] %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="ratio ratio-16x9 card-img-top">
+                        <iframe src="{{ video.embed_code }}" title="{{ video.title }}" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.title }}</h5>
+                        <p class="card-text">{{ video.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    
+    <!-- Disaster Information -->
+    <div class="card mt-5">
+        <div class="card-header bg-info">
+            <h3 class="mb-0"><i class="fas fa-info-circle me-2"></i>Disaster Safety Information</h3>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="disasterInfoAccordion">
+                <!-- Flood Information -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="floodHeading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#floodCollapse" aria-expanded="true" aria-controls="floodCollapse">
+                            <i class="fas fa-water me-2"></i> Flood Safety Information
+                        </button>
+                    </h2>
+                    <div id="floodCollapse" class="accordion-collapse collapse show" aria-labelledby="floodHeading">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Flood Warning Levels</h4>
+                                    <div class="list-group mb-4">
+                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1 text-warning">Flood Watch</h5>
+                                            </div>
+                                            <p class="mb-1">Conditions are favorable for flooding. Stay alert and prepare to take action.</p>
+                                        </div>
+                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1 text-danger">Flood Warning</h5>
+                                            </div>
+                                            <p class="mb-1">Flooding is imminent or already occurring. Take necessary precautions immediately.</p>
+                                        </div>
+                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1 text-danger">Flash Flood Warning</h5>
+                                            </div>
+                                            <p class="mb-1">A flash flood is imminent. Seek higher ground immediately - act fast!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Flood Safety Tips</h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Never attempt to walk or drive through flood waters</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Six inches of water can knock you down</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> One foot of water can float vehicles</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Stay away from power lines and electrical wires</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Have an evacuation plan with family members</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Landslide Information -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="landslideHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#landslideCollapse" aria-expanded="false" aria-controls="landslideCollapse">
+                            <i class="fas fa-mountain me-2"></i> Landslide Safety Information
+                        </button>
+                    </h2>
+                    <div id="landslideCollapse" class="accordion-collapse collapse" aria-labelledby="landslideHeading">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Landslide Warning Signs</h4>
+                                    <ul class="list-group mb-4">
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Springs, seeps, or saturated ground appearing in previously dry areas</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> New cracks or unusual bulges in the ground</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Soil moving away from foundations</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Tilting trees, utility poles, or walls</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Rapid increase in creek water levels</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Landslide Prevention</h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Plant ground cover on slopes</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Build retaining walls or erosion control structures</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Direct water runoff away from slopes</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Avoid building near steep slopes</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Consult professional engineers before construction</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Earthquake Information -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="earthquakeHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#earthquakeCollapse" aria-expanded="false" aria-controls="earthquakeCollapse">
+                            <i class="fas fa-house-damage me-2"></i> Earthquake Safety Information
+                        </button>
+                    </h2>
+                    <div id="earthquakeCollapse" class="accordion-collapse collapse" aria-labelledby="earthquakeHeading">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>During an Earthquake</h4>
+                                    <ul class="list-group mb-4">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> DROP: Get down on your hands and knees</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> COVER: Cover your head and neck with your arms</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> HOLD ON: Hold on to sturdy furniture until the shaking stops</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> If outdoors, move to an open area away from buildings</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> If in a vehicle, pull over to a clear location</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Earthquake Preparedness</h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Secure heavy furniture and appliances</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Know where and how to shut off utilities</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Create a family emergency plan</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Prepare an emergency kit</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Practice earthquake drills regularly</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tsunami Information -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="tsunamiHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tsunamiCollapse" aria-expanded="false" aria-controls="tsunamiCollapse">
+                            <i class="fas fa-water me-2"></i> Tsunami Safety Information
+                        </button>
+                    </h2>
+                    <div id="tsunamiCollapse" class="accordion-collapse collapse" aria-labelledby="tsunamiHeading">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Tsunami Warning Signs</h4>
+                                    <ul class="list-group mb-4">
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Strong earthquake near the coast</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Unusual water recession exposing ocean floor</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Loud roaring sound from the ocean</li>
+                                        <li class="list-group-item"><i class="fas fa-exclamation-triangle text-warning me-2"></i> Official tsunami warnings or evacuation orders</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Tsunami Safety</h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Move immediately to high ground or inland</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Follow evacuation routes and signs</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Stay away from the coast until officials give the all-clear</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> If caught in the water, grab onto something that floats</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Know your tsunami evacuation zones</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional resources section -->
+    <div class="card mt-5">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">Additional Resources</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-book me-2"></i> Official Guidelines</h5>
+                            <p class="card-text">Access comprehensive disaster preparedness guidelines from government agencies.</p>
+                            <a href="https://www.ready.gov/" target="_blank" class="btn btn-outline-primary">Ready.gov</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-file-pdf me-2"></i> Preparedness Checklists</h5>
+                            <p class="card-text">Download printable checklists for emergency kits and family plans.</p>
+                            <a href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html" target="_blank" class="btn btn-outline-danger">Red Cross Resources</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-globe me-2"></i> Interactive Maps</h5>
+                            <p class="card-text">View interactive hazard maps to understand risks in your area.</p>
+                            <a href="https://www.fema.gov/flood-maps" target="_blank" class="btn btn-outline-success">FEMA Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

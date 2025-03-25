@@ -1,0 +1,52 @@
+<svg width="300" height="400" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="waterfall-gradient" x1="150" y1="0" x2="150" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4FADE3" stop-opacity="0" />
+      <stop offset="20%" stop-color="#4FADE3" stop-opacity="0.2" />
+      <stop offset="40%" stop-color="#4FADE3" stop-opacity="0.4" />
+      <stop offset="70%" stop-color="#4FADE3" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#4FADE3" stop-opacity="0.8" />
+    </linearGradient>
+    <mask id="waterfall-mask">
+      <path d="M100 0 L200 0 L180 100 C180 150, 220 200, 160 250 C120 280, 140 320, 120 350 L100 400 L50 400 L80 350 C100 320, 80 280, 120 250 C180 200, 140 150, 140 100 L100 0Z" fill="white" />
+    </mask>
+  </defs>
+  
+  <!-- Mountain Silhouette -->
+  <path d="M0 400 L50 250 L100 350 L150 200 L200 300 L250 150 L300 400 Z" fill="#192A3E" />
+  
+  <!-- Waterfall -->
+  <rect x="0" y="0" width="300" height="400" fill="url(#waterfall-gradient)" mask="url(#waterfall-mask)">
+    <animate attributeName="y" from="-400" to="0" dur="2s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Waterfall Spray Particles -->
+  <g>
+    <circle cx="160" cy="250" r="2" fill="white" opacity="0.6">
+      <animate attributeName="cy" from="250" to="280" dur="0.8s" repeatCount="indefinite" />
+      <animate attributeName="cx" from="160" to="170" dur="0.8s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="165" cy="255" r="1.5" fill="white" opacity="0.5">
+      <animate attributeName="cy" from="255" to="275" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="cx" from="165" to="155" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0.5" to="0" dur="0.6s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="155" cy="245" r="2" fill="white" opacity="0.7">
+      <animate attributeName="cy" from="245" to="280" dur="1s" repeatCount="indefinite" />
+      <animate attributeName="cx" from="155" to="145" dur="1s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0.7" to="0" dur="1s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="120" cy="350" r="2" fill="white" opacity="0.6">
+      <animate attributeName="cy" from="350" to="370" dur="0.7s" repeatCount="indefinite" />
+      <animate attributeName="cx" from="120" to="130" dur="0.7s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="125" cy="355" r="1.5" fill="white" opacity="0.5">
+      <animate attributeName="cy" from="355" to="375" dur="0.9s" repeatCount="indefinite" />
+      <animate attributeName="cx" from="125" to="115" dur="0.9s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0.5" to="0" dur="0.9s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>

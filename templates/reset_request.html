@@ -1,0 +1,66 @@
+{% extends "layout1.html" %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Reset Password</h2>
+            <p>Enter your email to receive password reset instructions</p>
+        </div>
+        
+        <form method="POST" action="" class="auth-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                    {{ form.email(class="form-control", placeholder="Email Address") }}
+                </div>
+                {% if form.email.errors %}
+                    <div class="error-message">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-block") }}
+            </div>
+        </form>
+        
+        <div class="auth-footer">
+            <p><a href="{{ url_for('login') }}"><i class="fas fa-arrow-left"></i> Back to Login</a></p>
+        </div>
+    </div>
+    
+    <div class="auth-info">
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <h3>Check Your Email</h3>
+            <p>After submitting, we'll send you a link to reset your password</p>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h3>Limited Time</h3>
+            <p>The reset link will expire after 30 minutes for your security</p>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Secure Reset</h3>
+            <p>Create a strong new password to protect your GeoGuard account</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
