@@ -5,8 +5,9 @@ import random
 from unittest.mock import Base
 import flask
 from flask import Flask, jsonify, render_template, request, redirect, send_file, session, url_for, send_from_directory
-from joblib import dump, load
 import pickle
+
+import joblib
 from training import prediction
 import requests
 from datetime import datetime
@@ -623,7 +624,8 @@ data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'nam
 months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": ""}, {"name": current_month, "sel": "selected"}]
 cities = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}, {'name':'New York', "sel": ""}, {'name':'Los Angeles', "sel": ""}, {'name':'London', "sel": ""}, {'name':'Paris', "sel": ""}, {'name':'Sydney', "sel": ""}, {'name':'Beijing', "sel": ""}]
 
-model = pickle.load(open("model.pickle", 'rb'))
+#use joblib or pickle to load the model
+model = joblib.load("model/model.pickle")
 
 @app.route("/")
 def index() -> str:
@@ -649,33 +651,67 @@ def community():
 @app.route('/predicts.html', methods=["GET", "POST"])
 def get_predicts():
     try:
-        cities = [{'name':'Delhi', "sel": ""}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}, {'name':'New York', "sel": ""}, {'name':'Los Angeles', "sel": ""}, {'name':'London', "sel": ""}, {'name':'Paris', "sel": ""}, {'name':'Sydney', "sel": ""}, {'name':'Beijing', "sel": ""}]
-        cityname = request.form["city"]
-        for item in cities:
-            if item['name'] == 'cityname':
-                item['sel'] = 'selected'
-        print(cityname)
-        URL = "https://geocode.search.hereapi.com/v1/geocode"
-        location = cityname
-        api_key = 'pPFSt0miNxLZJY6_Zs-h-nB9W1XxxJG6s3wat1L37r8' # Acquire from developer.here.com
+        cities = [{'name':'Delhi', "sel": ""}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, 
+                  {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}, {'name':'New York', "sel": ""},
+                  {'name':'Los Angeles', "sel": ""}, {'name':'London', "sel": ""}, {'name':'Paris', "sel": ""},
+                  {'name':'Sydney', "sel": ""}, {'name':'Beijing', "sel": ""}]
 
-        PARAMS = {'apikey':api_key,'q':location} 
-        r = requests.get(url = URL, params = PARAMS) 
-        print(r)
+        cityname = request.form.get("city", "").strip()
+        if not cityname:
+            return render_template('predicts.html', cities=cities, cityname="Please select a valid city.")
+
+        for item in cities:
+            if item['name'] == cityname:
+                item['sel'] = 'selected'
+
+        print("Selected City:", cityname)
+
+        # HERE API for Geolocation
+        URL = "https://geocode.search.hereapi.com/v1/geocode"
+        api_key = 'pPFSt0miNxLZJY6_Zs-h-nB9W1XxxJG6s3wat1L37r8'
+        PARAMS = {'apikey': api_key, 'q': cityname}
+
+        r = requests.get(url=URL, params=PARAMS)
+        print("API Response Code:", r.status_code)
+
+        if r.status_code != 200:
+            return render_template('predicts.html', cities=cities, cityname="Error fetching location data.")
+
         data = r.json()
+        print("API Response:", data)
+
+        if 'items' not in data or not data['items']:
+            return render_template('predicts.html', cities=cities, cityname="Could not find coordinates for that city.")
+
         latitude = data['items'][0]['position']['lat']
         longitude = data['items'][0]['position']['lng']
         print(f"Latitude: {latitude}, Longitude: {longitude}")
+
+        # Weather Prediction
         final = prediction.get_data(latitude, longitude)
-        
+        if not final or len(final) < 6:
+            return render_template('predicts.html', cities=cities, cityname="Error retrieving prediction data.")
+
+        print("Weather Data:", final)
+
         final[4] *= 15
-        if str(model.predict([final])[0]) == "0":
-            pred = "Safe"
-        else:
-            pred = "Unsafe"
-        
-        return render_template('predicts.html', cityname="Information about " + cityname, cities=cities, temp=round(final[0], 2), maxt=round(final[1], 2), wspd=round(final[2], 2), cloudcover=round(final[3], 2), percip=round(final[4], 2), humidity=round(final[5], 2), pred = pred)
-    except:
+        pred = "Safe" if str(model.predict([final])[0]) == "0" else "Unsafe"
+        return render_template(
+            'predicts.html', 
+            cityname=f"Information about {cityname}", 
+            cities=cities, 
+            temp=round((final[0] - 32) * 0.5556, 2), 
+            maxt=round(final[1], 2), 
+            wspd=round(final[2], 2), 
+            cloudcover=round(final[3], 2), 
+            percip=round(final[4], 2), 
+            humidity=round(final[5], 2), 
+            pred=pred
+        )
+
+    except Exception as e:
+        print("Error:", e)
+        print(type(model))
         return render_template('predicts.html', cities=cities, cityname="Oops, we weren't able to retrieve data for that city.")
 
 @app.route('/quiz')

@@ -2,18 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>GeoGuard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000000' d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z'/></svg>">
+    <title>GeoGuard - predicts</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
 
-    <!-- Favicons -->
+    <!-- Favicons 
     <link
       href="{{ url_for('static', filename='img/favicon-2.png') }}"
       rel="icon"
     />
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-
+-->
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700"
@@ -102,7 +103,7 @@
         <div class="logo float-left">
           <a href="index.html" class="scrollto"
             ><img
-              style="margin-top: -5px; min-height: 50px;"
+              style="margin-top: -5px; min-height: 100px;"
               src="{{ url_for('static', filename='img/logo.png') }}"
               alt=""
               class="img-fluid"
@@ -205,7 +206,7 @@
                     style="color: #ff689b;"
                   ></i>
                 </div>
-                <h4>Temperature (F)</h4>
+                <h4>Temperature (C)</h4>
                 <h4 style="font-weight: 900;font-size: 40px;">{{temp}}</h4>
                 <!-- <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
@@ -328,82 +329,12 @@
       <div class="footer-top">
         <div class="container">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 d-flex">
               <div class="row">
                 <div class="col-sm-11">
                   <div class="footer-info">
-                    <!-- <h3>FloodGuard</h3> -->
-                    <a href="index.html" class="scrollto"
-                      ><img
-                        style="margin-top: 0px; max-height: 100px;"
-                        src="{{ url_for('static', filename='img/logo.png') }}"
-                        alt=""
-                        class="img-fluid"
-                    /></a>
-                    <p style="padding-top: 20px;">
-                      FloodGuard is a tool that uses Machine Learning and Data
-                      Visualization to show you plots and heatmaps with realtime
-                      flood information, as well locational predictions about
-                      future floods and potential damage.
-                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <div class="form">
-                <h4>Send us a message</h4>
-
-                <form action="" method="post" role="form" class="contactForm">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      name="name"
-                      class="form-control"
-                      id="name"
-                      placeholder="Your Name"
-                      data-rule="minlen:4"
-                      data-msg="Please enter at least 4 chars"
-                    />
-                    <div class="validation"></div>
-                  </div>
-                  <div class="form-group">
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      id="email"
-                      placeholder="Your Email"
-                      data-rule="email"
-                      data-msg="Please enter a valid email"
-                    />
-                    <div class="validation"></div>
-                  </div>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      id="subject"
-                      placeholder="Subject"
-                      data-rule="minlen:4"
-                      data-msg="Please enter at least 8 chars of subject"
-                    />
-                    <div class="validation"></div>
-                  </div>
-
-                  <div id="sendmessage">
-                    Your message has been sent. Thank you!
-                  </div>
-                  <div id="errormessage"></div>
-
-                  <div class="text-center">
-                    <button type="submit" title="Send Message">
-                      Send Message
-                    </button>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
