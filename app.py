@@ -629,7 +629,6 @@ model = joblib.load("model/model.pickle")
 
 @app.route("/")
 def index() -> str:
-    """Redirect to login page."""
     return redirect(url_for('home'))
 
 @app.route('/home.html')
@@ -827,6 +826,7 @@ def chat():
     except Exception as e:
         logging.error(f"Error processing chat message: {str(e)}")
         return jsonify({'error': 'An error occurred processing your request'}), 500
+
 
 @app.route('/get_helplines', methods=['GET'])
 def get_helplines():

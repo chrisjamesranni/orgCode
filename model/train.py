@@ -35,7 +35,7 @@ X_test = scaler.transform(X_test)
 X_train = np.reshape(X_train, (X_train.shape[0], 1, X_train.shape[1]))
 X_test = np.reshape(X_test, (X_test.shape[0], 1, X_test.shape[1]))
 
-# Building the RNN model
+# Building the RNN model#######################################################################################
 #model = Sequential([
 #    LSTM(units=50, return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])),
 #    Dropout(0.2),
@@ -59,7 +59,7 @@ joblib.dump(scaler, 'scaler.joblib')  # Save the scaler using joblib
 #    'scaler_path': 'scaler.joblib'}
 #joblib.dump(model_info, 'model_info.joblib')
 #print("Model and scaler have been saved using joblib.")
-
+#################################################################################################################
 # To load later:
 loaded_model_info = joblib.load('model_info.joblib')
 loaded_scaler = joblib.load(loaded_model_info['scaler_path'])
